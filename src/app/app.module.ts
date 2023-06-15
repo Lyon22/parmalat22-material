@@ -50,9 +50,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 
-import { Routes, RouterOutlet } from '@angular/router';
-import { CustomersComponent } from './customers/customers.component';
-
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpClientModule } from '@angular/common/http';
 
