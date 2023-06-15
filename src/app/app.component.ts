@@ -1,4 +1,6 @@
 import { Component, VERSION } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'my-app',
@@ -6,24 +8,41 @@ import { Component, VERSION } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Angular ' + VERSION.major;
+  displayedColumns: string[] = ['id'];
+  data: any[] = [];
+  loading: boolean = false;
+  page: number = 1;
+  totalPages: number = 5;
 
-  dataSource: any[];
-  displayedColumns: string[] = ['id', 'name']; // Add more column names here
+  constructor(private http: HttpClient) {}
 
-  constructor() {
-    this.dataSource = this.generateData(20); // Generate 20 registers
+  ngOnInit() {
+    this.loadData();
   }
 
-  generateData(count: number): any[] {
-    const data = [];
-    for (let i = 1; i <= count; i++) {
-      const row = {
-        id: i,
-        name: `Row ${i}`,
-      };
-      data.push(row);
+  loadData() {
+    this.loading = true;
+    // Replace 'your-api-endpoint' with your actual API endpoint
+    /*const apiUrl =
+      'https://api.github.com/repos/openai/openai-python/issues?page=' + this.page + '&per_page=5';*/
+
+    const apiUrl =
+      'https://api.github.com/repos/openai/openai-python/issues?page=' + this.page;
+    this.http.get(apiUrl)
+    .pipe(
+      tap(val => console.log(val))
+    )
+    .subscribe((response: any) => {
+      this.data = [...this.data, ...response]
+      this.page++;
+      console.log('page: ', this.page);
+      this.loading = false;
+    });
+  }
+
+  loadMoreData() {
+    if (this.page <= this.totalPages && !this.loading) {
+      this.loadData();
     }
-    return data;
   }
 }

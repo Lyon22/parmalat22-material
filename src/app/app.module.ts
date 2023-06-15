@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 // Imports of used components
+
 import { A11yModule } from '@angular/cdk/a11y';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -52,12 +53,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { Routes, RouterOutlet } from '@angular/router';
 import { CustomersComponent } from './customers/customers.component';
 
-// const routes: Routes = [
-//   {
-//     path: 'customers',
-//     loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)
-//   }
-// ];
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   imports: [
@@ -107,6 +105,8 @@ import { CustomersComponent } from './customers/customers.component';
     OverlayModule,
     PortalModule,
     ScrollingModule,
+    InfiniteScrollModule,
+    HttpClientModule,
   ],
   declarations: [AppComponent, CustomersComponent],
   bootstrap: [AppComponent],
