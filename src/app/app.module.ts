@@ -108,7 +108,7 @@ import { HttpClientModule } from '@angular/common/http';
     InfiniteScrollModule,
     HttpClientModule,
   ],
-  declarations: [AppComponent, CustomersComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
